@@ -1,0 +1,71 @@
+{
+  "name": "@edeckers/flipr-sh",
+  "version": "0.0.0",
+  "description": "A simple URL shortener",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "npm run css:build && tsc && cp -r public dist/public && cp -r views dist/views",
+    "clean": "rm -rf dist",
+    "cli": "tsx src/index.ts",
+    "cli:watch": "tsx watch --include public/*.html -- src/index.ts serve",
+    "css:build": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./public/style.css --minify",
+    "css:watch": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./public/style.css --watch",
+    "dev": "concurrently \"npm run css:watch\" \"npm run cli:watch\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\" \"*.{json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,md}\" \"*.{json,md}\"",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "start": "tsx dist/lib/index.js serve",
+    "test": "echo \"No tests yet...\"",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edeckers/flipr.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [
+    "express",
+    "kubernetes",
+    "scaling",
+    "typescript",
+    "url-shortener"
+  ],
+  "author": "Ely Deckers",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "commander": "^14",
+    "dotenv": "^17",
+    "express": "^5",
+    "winston": "^3.17.0",
+    "zod": "^4"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19",
+    "@semantic-release/changelog": "^6",
+    "@semantic-release/git": "^10",
+    "@tailwindcss/cli": "^4",
+    "@types/express": "^5",
+    "@types/node": "^24",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "commitlint": "^19",
+    "concurrently": "^9",
+    "eslint": "^9",
+    "eslint-config-prettier": "^10",
+    "eslint-plugin-prettier": "^5",
+    "husky": "^9",
+    "prettier": "^3",
+    "semantic-release": "^24",
+    "tailwindcss": "^4",
+    "tsx": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  }
+}
